@@ -1,7 +1,6 @@
 package project.sinam7.advancedYogi.advancedYogi.Controller.Web;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,7 @@ public class RestaurantListController {
 
     @GetMapping()
     @ResponseBody
-    public ResponseEntity<Object> getRestaurants() {
+    public Object getRestaurants() {
         return restaurantService.getRestaurants();
     }
 }

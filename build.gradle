@@ -1,3 +1,4 @@
+//file:noinspection GroovyUnusedAssignment
 plugins {
 	id 'java'
 	id 'org.springframework.boot' version '2.7.5'
@@ -19,12 +20,21 @@ repositories {
 }
 
 dependencies {
+	// spring boot web
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+	// JSON - https://mvnrepository.com/artifact/org.json/json
+	implementation 'org.json:json:20220924'
+
+	// development tools
+	annotationProcessor 'org.projectlombok:lombok'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	// database
 	runtimeOnly 'com.h2database:h2'
-	annotationProcessor 'org.projectlombok:lombok'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 

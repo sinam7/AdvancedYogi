@@ -1,5 +1,7 @@
 package project.sinam7.advancedYogi.advancedYogi.Rest;
 
+import lombok.extern.slf4j.Slf4j;
+import org.json.JSONObject;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -11,20 +13,24 @@ import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 import project.sinam7.advancedYogi.advancedYogi.Service.Secrets;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Objects;
 
+@Slf4j
+@SuppressWarnings("unchecked")
 public class YogiyoRequest {
 
     @SuppressWarnings("UnnecessaryToStringCall")
-    public ResponseEntity<Object> getRestaurants(double lat, double lng) {
+    public Object getRestaurants(double lat, double lng) {
         //Spring restTemplate
         String url = "https://www.yogiyo.co.kr/api/v1/restaurants-geo/?items=60&" +
                 "lat=" + lat + "&lng=" + lng +
                 "&order=rank&page=0&search=";
-        //Spring restTemplate
-        HashMap<String, Object> result = new HashMap<>();
-        ResponseEntity<Object> resultMap = new ResponseEntity<>(null, null, 200);
 
+        // Spring restTemplate
+        ResponseEntity<Object> responseEntity = new ResponseEntity<>(null, null, 200);
         try {
             RestTemplate restTemplate = new RestTemplate();
 
@@ -36,29 +42,41 @@ public class YogiyoRequest {
 
             UriComponents uri = UriComponentsBuilder.fromHttpUrl(url).build();
 
-            resultMap = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, Object.class);
+            responseEntity = restTemplate.exchange(uri.toString(), HttpMethod.GET, entity, Object.class);
 
-            result.put("statusCode", resultMap.getStatusCodeValue()); //http status code를 확인
-            result.put("header", resultMap.getHeaders()); //헤더 정보 확인
-            result.put("body", resultMap.getBody()); //실제 데이터 정보 확인
+            // Body 가공
+            ResponseJsonFactory resultBody = new ResponseJsonFactory((LinkedHashMap<String, ?>) Objects.requireNonNull(responseEntity.getBody()));
 
-            //에러처리해야댐
+            return resultBody.restaurants;
+
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            result.put("statusCode", e.getRawStatusCode());
-            result.put("body", e.getStatusText());
             System.out.println("error");
             System.out.println(e.toString());
 
-            return resultMap;
+            return responseEntity;
         } catch (Exception e) {
-            result.put("statusCode", "999");
-            result.put("body", "excpetion오류");
             System.out.println(e.toString());
+            System.out.println(responseEntity.getBody());
 
-            return resultMap;
+            return responseEntity;
 
         }
 
-        return resultMap;
     }
+
+    /**
+     * Pagination 정보와 restaurants ArrayList를 분리, 가공, 처리를 위한 클래스
+     * TODO restaurants의 형태를 ArrayList<Restaurant>로 변경
+     */
+    private static class ResponseJsonFactory {
+        LinkedHashMap<String, Integer> pagination;
+        ArrayList<LinkedHashMap<String, Object>> restaurants;
+
+        ResponseJsonFactory(LinkedHashMap<String, ?> raw) {
+            pagination = (LinkedHashMap<String, Integer>) raw.get("pagination");
+            restaurants = (ArrayList<LinkedHashMap<String, Object>>) raw.get("restaurants");
+        }
+
+    }
+
 }
