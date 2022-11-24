@@ -1,35 +1,40 @@
 package project.sinam7.advancedYogi.advancedYogi.Controller.Web;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import project.sinam7.advancedYogi.advancedYogi.Domain.Restaurant;
 import project.sinam7.advancedYogi.advancedYogi.Service.RestaurantService;
 import project.sinam7.advancedYogi.advancedYogi.Service.Secrets;
 
-@RestController // todo 나중에 페이지 만들면 Controller로
+import java.util.ArrayList;
+
+@RestController
 @RequiredArgsConstructor
-@RequestMapping("/restaurants")
-public class RestaurantListController {
+@RequestMapping("/api/restaurants")
+public class RestaurantRestController {
 
     private final RestaurantService restaurantService;
 
     // TODO geo 정보 받아서 query param으로 받아 position 설정
     @GetMapping()
-    public Object getRestaurants() {
-        setPosition(Secrets.MY_LAT, Secrets.MY_LNG);
-        return restaurantService.getRestaurants();
+    public ArrayList<Restaurant> getRestaurants() {
+        return getRestaurants("0");
     }
 
     @GetMapping("/pages/{pageNum}")
-    public Object getRestaurants(@PathVariable String pageNum) {
+    public ArrayList<Restaurant> getRestaurants(@PathVariable(required = false) String pageNum) {
         setPosition(Secrets.MY_LAT, Secrets.MY_LNG);
-        return restaurantService.getRestaurants(Integer.parseInt(pageNum));
+        int num = pageNum.isEmpty() ? 0 : Math.max(Integer.parseInt(pageNum), 0);
+
+        return restaurantService.getRestaurants(num);
     }
 
     // 지금까지 받은 모든 식당 정보
     @GetMapping("/loadAll")
-    public Object getAllLoadedRestaurants() {
+    public ArrayList<Restaurant> getAllLoadedRestaurants() {
         return restaurantService.getAllRestaurants();
     }
 

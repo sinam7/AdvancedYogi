@@ -14,10 +14,10 @@ public class ResponseJsonDTO {
 
     /** (example)
      * "pagination": {
-     *         "per_page": 60, 페이지당 데이터 수
-     *         "current_page": 0, 현재 페이지
-     *         "total_pages": 27, 총 페이지 수
-     *         "total_objects": 1615 총 데이터 수
+     * "per_page": 60, 페이지당 데이터 수
+     * "current_page": 0, 현재 페이지
+     * "total_pages": 27, 총 페이지 수
+     * "total_objects": 1615 총 데이터 수
      */
     LinkedHashMap<String, Integer> pagination;
     ArrayList<LinkedHashMap<String, Object>> restaurants;
