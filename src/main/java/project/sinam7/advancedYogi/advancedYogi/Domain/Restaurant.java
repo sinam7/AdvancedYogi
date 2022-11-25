@@ -66,7 +66,6 @@ public class Restaurant implements Serializable {
     private Object discounts; // discounts - additional - (delivery, pickup 중 최소 1개, 없으면 discounts 자체가 없음)
     private String promotion_text; // 신규 입점 알림 광고멘트 (새로 들어왔어요, 첫 리뷰 남겨주세요, ...)
     private String thumbnail_message; // ?? - 보통 비어 있는듯
-    // todo String 파싱을 통해 값 분리가 필요할 수 있음
     private String delivery_fee_to_display; // 표시용 배달료 (?,???원 or 무료~?,???원 or 무료)
 
     public void setDelivery_fee_to_display(LinkedHashMap<String, String> input) {
