@@ -7,9 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import project.sinam7.advancedYogi.advancedYogi.Domain.Restaurant;
 import project.sinam7.advancedYogi.advancedYogi.Service.RestaurantService;
-import project.sinam7.advancedYogi.advancedYogi.Service.Secrets;
+import project.sinam7.advancedYogi.advancedYogi.Secrets.Secret;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,13 +21,13 @@ public class RestaurantRestController {
 
     // TODO geo 정보 받아서 query param으로 받아 position 설정
     @GetMapping()
-    public ArrayList<Restaurant> getRestaurants() {
+    public List<Restaurant> getRestaurants() {
         return getRestaurants("0");
     }
 
     @GetMapping("/pages/{pageNum}")
-    public ArrayList<Restaurant> getRestaurants(@PathVariable(required = false) String pageNum) {
-        setPosition(Secrets.MY_LAT, Secrets.MY_LNG);
+    public List<Restaurant> getRestaurants(@PathVariable(required = false) String pageNum) {
+        setPosition(Secret.MY_LAT, Secret.MY_LNG);
         int num = pageNum.isEmpty() ? 0 : Math.max(Integer.parseInt(pageNum), 0);
 
         return restaurantService.getRestaurants(num);

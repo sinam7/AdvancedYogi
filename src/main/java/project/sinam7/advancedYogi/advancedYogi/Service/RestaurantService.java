@@ -9,6 +9,7 @@ import project.sinam7.advancedYogi.advancedYogi.Rest.YogiyoRequest;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
 @Service
 @Setter
@@ -29,11 +30,11 @@ public class RestaurantService {
         return getRestaurants(currentPageNum);
     }
 
-    public ArrayList<Restaurant> getRestaurants(int pageNum) {
+    public List<Restaurant> getRestaurants(int pageNum) {
         currentPageNum = pageNum;
         ArrayList<LinkedHashMap<String, Object>> result = null;
 
-        ArrayList<Restaurant> restaurants = null;
+        List<Restaurant> restaurants = null;
         try {
             restaurants = yogiyoRequest.getRestaurants(latitude, longitude, pageNum);
         } catch (Exception e) {
