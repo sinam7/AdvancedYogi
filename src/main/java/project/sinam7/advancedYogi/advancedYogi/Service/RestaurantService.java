@@ -24,12 +24,6 @@ public class RestaurantService {
 
     private int currentPageNum = 0;
 
-    // todo Session 도입 시 어떻게 사용할지 생각좀 해야할듯
-    public Object getRestaurantsNextPage() {
-        currentPageNum += 1;
-        return getRestaurants(currentPageNum);
-    }
-
     public List<Restaurant> getRestaurants(int pageNum) {
         currentPageNum = pageNum;
         ArrayList<LinkedHashMap<String, Object>> result = null;

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 import project.sinam7.advancedYogi.advancedYogi.Domain.Restaurant;
-import project.sinam7.advancedYogi.advancedYogi.Rest.DTO.SimplifiedRestaurant;
+import project.sinam7.advancedYogi.advancedYogi.Domain.SimplifiedRestaurant;
 import project.sinam7.advancedYogi.advancedYogi.Rest.YogiyoRequest;
 
 import java.net.URI;
