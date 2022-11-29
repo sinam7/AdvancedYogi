@@ -9,10 +9,12 @@ import java.util.Map;
 public class Options {
 
     private static final Map<String, String> categories = new LinkedHashMap<>();
+    private static final Map<String, String> sortOrder = new LinkedHashMap<>();
 
 
     public Options() {
         initCategories();
+        initSortOrder();
     }
 
     private void initCategories() {
@@ -33,6 +35,27 @@ public class Options {
         }
     }
 
+    private void initSortOrder() {
+        String[] key = new String[]{
+                "",
+                "min_order_amount",
+                "adjusted_delivery_fee",
+                "estimated_delivery_time",
+                "review_count"
+        };
+        String[] text = new String[]{
+                "-- 선택하세요 --",
+                "최소 주문 금액 순",
+                "배달팁 낮은 순",
+                "배달 빠른 순",
+                "리뷰 많은 순"
+        };
+
+        for (int i = 0; i < key.length; i++) {
+            sortOrder.put(key[i], text[i]);
+        }
+    }
+
     /* 웹버전 기준
     "1인분주문", "프랜차이즈", "치킨", "피자양식", "중식",
     "한식", "일식돈까스", "족발보쌈", "야식", "분식",
@@ -44,6 +67,10 @@ public class Options {
 
     public static Map<String, String> getCategories() {
         return categories;
+    }
+
+    public static Map<String, String> getSortOrder() {
+        return sortOrder;
     }
 
 }
