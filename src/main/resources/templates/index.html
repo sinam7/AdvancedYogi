@@ -2,6 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
     <title>Advanced Filtered Yogiyo</title>
 </head>
 <body>
@@ -13,18 +14,43 @@
 <!-- 상세 필터 설정하기 -->
     <!-- 카테고리 (체크박스) -->
     <div>
-        <h4>카테고리</h4>
+        <h3>카테고리</h3>
         <!--/*@thymesVar id="categories" type="LinkedHashMap<String, String>"*/-->
-        <div th:each="category : ${categories}">
-            <!--/*@thymesVar id="filter" type="project.sinam7.advancedYogi.advancedYogi.Domain.SearchFilter"*/-->
-            <input type="checkbox" th:field="${filter.categories}" th:value="${category.key}">
-            <label th:for="${#ids.prev('categories')}" th:text="${category.value}">1인분주문</label>
+        <div class="container">
+            <div>선택하기 >></div>
+<!--        /*@thymesVar id="filter" type="project.sinam7.advancedYogi.advancedYogi.Domain.SearchFilter"*/-->
+            <div th:each="category : ${categories}" >
+                <input th:type="checkbox" th:field="${filter.categories}" th:value="${category.key}">
+                <label th:for="${#ids.prev('categories')}" th:text="${category.value}">1인분주문</label>
+            </div>
         </div>
+        <br>
     </div>
     <!-- 최소주문금액 (텍스트 인풋) -->
+    <div>
+        <h3>최소주문금액 (100원 단위)</h3>
+        <label>
+            <input type="number" value="10000" step="100" id="min_order_amount">
+            원 이하 최소주문금액 식당을 검색합니다.
+        </label>
+    </div>
     <!-- 최대 배달팁 (텍스트 인풋) -->
-    <!-- n원 이상 주문 시 무료 무시하기 (텍스트 인풋) -->
+    <div>
+        <h3>최대 배달팁 (100원 단위)</h3>
+        <label>
+            <input type="number" value="3000" step="100" id="adjusted_delivery_fee">
+            원 이하 배달팁 식당을 검색합니다.
+        </label>
+        <label>
+            <input type="number" value="50000" step="100" id="free_delivery_threshold">
+            원 이상 배달팁 무료 식당의 기준을 무시합니다.
+        </label>
+    </div>
     <!-- 정렬 기준 다중선택 (최소주문금액 적은순, 배달팁 낮은 순 등등 체크박스) -->
+    <div>
+        <h3>정렬 기준 선택</h3>
+<!--        select - option 여러개 만들어서 진행-->
+    </div>
 
 <!--  [Search] (버튼)  -->
 </body>
