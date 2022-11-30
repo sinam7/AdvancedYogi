@@ -10,6 +10,8 @@
 <header>
     <h1>요기요 고급 검색</h1>
 </header>
+
+
 <!-- 현재 위치 받아오기 (위도/경도) -->
 <!-- 상세 필터 설정하기 -->
     <!-- 카테고리 (체크박스) -->
@@ -68,9 +70,34 @@
 
         </div>
     </div>
+
+    <div>
+        <h4>내 위치 찾기</h4>
+        <button onclick="findLocation()" type="button">현재 위치의 위도와 경도</button>
+        <p id="myLocation"></p>
+
+
+
+    </div>
+
     <br><br>
     <button type="submit">검색</button>
 </form>
-<!--  [Search] (버튼)  -->
 </body>
+
+<script>
+    var loc = document.getElementById("myLocation");
+    function findLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showYourLocation);
+        } else {
+            loc.innerHTML = "이 문장은 사용자의 웹 브라우저가 Geolocation API를 지원하지 않을 때 나타납니다!";
+        }
+    }
+
+    function showYourLocation(position) {
+        loc.innerHTML = "현재 사용자는 위도 " + position.coords.latitude + ", 경도 " + position.coords.longitude + "에 위치하고 있습니다.";
+    }
+</script>
+
 </html>
