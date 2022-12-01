@@ -14,6 +14,7 @@ public class SearchFilter {
     private Integer min_order_amount = 12000;
     private Integer adjusted_delivery_fee = 3000;
     private Integer free_delivery_threshold = 50000;
-    // TODO 아 맞다 위치정보
+    private Double latitude = 0.0;
+    private Double longitude = 0.0;
 
 }
