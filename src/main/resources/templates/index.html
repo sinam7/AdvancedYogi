@@ -79,7 +79,7 @@
         <span>경도 : <input type="number" th:field="*{longitude}" th:value="*{longitude}"></span>
 
         <p id="myLocation"></p>
-
+        <a id="map" target="_blank">내 위치 지도로 보기 (새 창으로 열림)</a>
 
 
     </div>
@@ -93,6 +93,7 @@
     let lat = document.getElementById("latitude");
     let lng = document.getElementById("longitude");
     let loc = document.getElementById("myLocation")
+    let map = document.getElementById("map");
 
     function findLocation() {
         if (navigator.geolocation) {
@@ -107,6 +108,7 @@
         loc.innerHTML = "현재 사용자는 위도 " + position.coords.latitude + ", 경도 " + position.coords.longitude + "에 위치하고 있습니다.";
         lat.setAttribute('value', Number(position.coords.latitude));
         lng.setAttribute('value', Number(position.coords.longitude));
+        map.setAttribute('href', "https://www.google.co.kr/maps/search/" + position.coords.latitude + "," + position.coords.longitude);
     }
 </script>
 
