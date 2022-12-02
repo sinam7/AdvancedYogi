@@ -8,7 +8,6 @@ import project.sinam7.advancedYogi.advancedYogi.Domain.Restaurant;
 import project.sinam7.advancedYogi.advancedYogi.Rest.YogiyoRequest;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 @Service
@@ -19,22 +18,13 @@ public class RestaurantService {
 
     private final YogiyoRequest yogiyoRequest;
 
-    public double latitude;
-    public double longitude;
-
-    private int currentPageNum = 0;
-
-    public List<Restaurant> getRestaurants(int pageNum) {
-        currentPageNum = pageNum;
-        ArrayList<LinkedHashMap<String, Object>> result = null;
-
+    public List<Restaurant> getRestaurants(double latitude, double longitude, int pageNum) {
         List<Restaurant> restaurants = null;
         try {
             restaurants = yogiyoRequest.getRestaurants(latitude, longitude, pageNum);
         } catch (Exception e) {
             log.error("Error occurred whilst running " + this.getClass() + ": " + e);
         }
-
 
         return restaurants;
     }

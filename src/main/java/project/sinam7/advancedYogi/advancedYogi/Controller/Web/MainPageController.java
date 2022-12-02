@@ -1,6 +1,7 @@
 package project.sinam7.advancedYogi.advancedYogi.Controller.Web;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +15,9 @@ import java.util.Map;
 @Slf4j
 @Controller
 public class MainPageController {
+
+    @Autowired
+    private RestaurantRestController restaurantRestController;
 
     @ModelAttribute("categories")
     public Map<String, String> categories() {
@@ -33,9 +37,9 @@ public class MainPageController {
 
     @ResponseBody // todo submit -> RestaurantController.result 로 PRG 패턴 적용
     @PostMapping("/submit")
-    public String search(@ModelAttribute(name = "filter") SearchFilter searchFilter) {
+    public Object search(@ModelAttribute(name = "filter") SearchFilter searchFilter) {
         log.info(searchFilter.toString());
-        return searchFilter.toString();
+        return restaurantRestController.getRestaurants(searchFilter, "0");
     }
 
 }
