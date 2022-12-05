@@ -72,4 +72,8 @@ public class Restaurant implements Serializable {
         delivery_fee_to_display = input.get("basic");
     }
 
+    public void setDelivery_fee_to_display_byString(String input) {
+        delivery_fee_to_display = input;
+    }
+
 }
