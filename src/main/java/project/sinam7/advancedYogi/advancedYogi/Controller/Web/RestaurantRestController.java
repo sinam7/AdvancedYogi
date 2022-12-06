@@ -3,7 +3,7 @@ package project.sinam7.advancedYogi.advancedYogi.Controller.Web;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import project.sinam7.advancedYogi.advancedYogi.Domain.Restaurant;
-import project.sinam7.advancedYogi.advancedYogi.Domain.SearchFilter;
+import project.sinam7.advancedYogi.advancedYogi.Domain.Search.SearchFilter;
 import project.sinam7.advancedYogi.advancedYogi.Domain.SimplifiedRestaurant;
 import project.sinam7.advancedYogi.advancedYogi.Service.RestaurantService;
 

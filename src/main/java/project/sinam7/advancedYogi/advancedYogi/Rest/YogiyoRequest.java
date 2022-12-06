@@ -11,7 +11,7 @@ import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
-import project.sinam7.advancedYogi.advancedYogi.Domain.Pagination;
+import project.sinam7.advancedYogi.advancedYogi.Domain.Search.Pagination;
 import project.sinam7.advancedYogi.advancedYogi.Domain.Restaurant;
 import project.sinam7.advancedYogi.advancedYogi.Rest.DTO.YogiyoRequestDTO;
 import project.sinam7.advancedYogi.advancedYogi.Secrets.Secret;

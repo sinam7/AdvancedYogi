@@ -4,9 +4,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import project.sinam7.advancedYogi.advancedYogi.Domain.ComparatorGenerator;
+import project.sinam7.advancedYogi.advancedYogi.Utility.ComparatorGenerator;
 import project.sinam7.advancedYogi.advancedYogi.Domain.Restaurant;
-import project.sinam7.advancedYogi.advancedYogi.Domain.SearchFilter;
+import project.sinam7.advancedYogi.advancedYogi.Domain.Search.SearchFilter;
 import project.sinam7.advancedYogi.advancedYogi.Domain.SimplifiedRestaurant;
 import project.sinam7.advancedYogi.advancedYogi.Rest.YogiyoRequest;
 

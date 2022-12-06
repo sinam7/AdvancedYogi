@@ -1,4 +1,4 @@
-package project.sinam7.advancedYogi.advancedYogi.Domain;
+package project.sinam7.advancedYogi.advancedYogi.Domain.Search;
 
 import lombok.Data;
 import lombok.ToString;

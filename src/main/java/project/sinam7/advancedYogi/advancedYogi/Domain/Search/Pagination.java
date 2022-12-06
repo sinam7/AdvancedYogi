@@ -1,4 +1,4 @@
-package project.sinam7.advancedYogi.advancedYogi.Domain;
+package project.sinam7.advancedYogi.advancedYogi.Domain.Search;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;

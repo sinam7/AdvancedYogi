@@ -21,7 +21,7 @@
         <!--/*@thymesVar id="categories" type="LinkedHashMap<String, String>"*/-->
         <div class="container">
             <div>선택하기 >></div>
-            <!--/*@thymesVar id="filter" type="project.sinam7.advancedYogi.advancedYogi.Domain.SearchFilter"*/-->
+            <!--/*@thymesVar id="filter" type="project.sinam7.advancedYogi.advancedYogi.Domain.Search.SearchFilter"*/-->
             <div th:each="category : ${categories}" >
                 <input th:type="checkbox" th:field="*{categories}" th:value="${category.key}">
                 <label th:for="${#ids.prev('categories')}" th:text="${category.value}">1인분주문</label>

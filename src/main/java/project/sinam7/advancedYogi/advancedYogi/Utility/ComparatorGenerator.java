@@ -1,4 +1,7 @@
-package project.sinam7.advancedYogi.advancedYogi.Domain;
+package project.sinam7.advancedYogi.advancedYogi.Utility;
+
+import project.sinam7.advancedYogi.advancedYogi.Domain.Search.Options;
+import project.sinam7.advancedYogi.advancedYogi.Domain.SimplifiedRestaurant;
 
 import java.util.Comparator;
 import java.util.List;

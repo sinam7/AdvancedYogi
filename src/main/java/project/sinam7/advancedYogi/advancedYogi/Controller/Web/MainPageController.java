@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import project.sinam7.advancedYogi.advancedYogi.Domain.Options;
-import project.sinam7.advancedYogi.advancedYogi.Domain.SearchFilter;
+import project.sinam7.advancedYogi.advancedYogi.Domain.Search.Options;
+import project.sinam7.advancedYogi.advancedYogi.Domain.Search.SearchFilter;
 
 import java.util.Map;
 
