@@ -4,11 +4,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import project.sinam7.advancedYogi.advancedYogi.Utility.ComparatorGenerator;
 import project.sinam7.advancedYogi.advancedYogi.Domain.Restaurant;
 import project.sinam7.advancedYogi.advancedYogi.Domain.Search.SearchFilter;
 import project.sinam7.advancedYogi.advancedYogi.Domain.SimplifiedRestaurant;
 import project.sinam7.advancedYogi.advancedYogi.Rest.YogiyoRequest;
+import project.sinam7.advancedYogi.advancedYogi.Utility.ComparatorGenerator;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -22,10 +22,10 @@ public class RestaurantService {
 
     private final YogiyoRequest yogiyoRequest;
 
-    public List<Restaurant> getRestaurants(double latitude, double longitude, int pageNum) {
+    public List<Restaurant> getRestaurants(String category, Integer items, double latitude, double longitude, int pageNum) {
         List<Restaurant> restaurants = null;
         try {
-            restaurants = yogiyoRequest.getRestaurants(latitude, longitude, pageNum);
+            restaurants = yogiyoRequest.getRestaurants(category, items, latitude, longitude, pageNum);
         } catch (Exception e) {
             log.error("Error occurred whilst running " + this.getClass() + ": " + e);
         }

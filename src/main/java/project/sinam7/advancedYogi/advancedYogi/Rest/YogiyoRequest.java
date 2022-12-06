@@ -26,16 +26,17 @@ public class YogiyoRequest {
 
     private static final HashMap<Integer, List<Restaurant>> allLoadedRestaurants = new HashMap<>();
 
-    public List<Restaurant> getRestaurants(double lat, double lng, int pageNum) throws HttpClientErrorException, HttpServerErrorException {
-
-//        TODO 다중 사용자 환경에 맞지 않는 메모이제이션 구현방식. 요기요 API call을 줄일 수 있는 방법은?
-//        if (allLoadedRestaurants.containsKey(pageNum)) return allLoadedRestaurants.get(pageNum);
-//        if (allLoadedRestaurants.size() != pageNum) { // 현재 페이지 이전의 식당 정보를 받지 않은 경우
-//            getRestaurants(lat, lng, pageNum - 1);
-//        }
+    public List<Restaurant> getRestaurants(String category, Integer items, double lat, double lng, int pageNum) throws HttpClientErrorException, HttpServerErrorException {
 
         // Spring restTemplate
-        String url = "https://www.yogiyo.co.kr/api/v1/restaurants-geo/?items=60&" + "lat=" + lat + "&lng=" + lng + "&order=rank" + "&page=" + pageNum + "&search=";
+        String url = "https://www.yogiyo.co.kr/api/v1/restaurants-geo/?" +
+            (!category.isEmpty() ? ("category=" + category + "&") : "") +
+            "items=" + (items != null ? items : "60") +
+            "&lat=" + lat + "&lng=" + lng +
+            "&order=rank" +
+            "&page=" + pageNum +
+            "&search=";
+
 
         HttpHeaders header = new HttpHeaders();
         header.add("X-ApiKey", Secret.YOGIYO_API_KEY);
