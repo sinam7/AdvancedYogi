@@ -38,8 +38,26 @@ public class MainPageController {
     @ResponseBody // todo submit -> RestaurantController.result 로 PRG 패턴 적용
     @PostMapping("/submit")
     public Object search(@ModelAttribute(name = "filter") SearchFilter searchFilter) {
+        // 나중에 위치정보 위경도로 받을 필요 없어지면 삭제
+        if (!validateGeoPosition(searchFilter)) {
+            log.warn("Invalid Geoposition input: " +
+                    "{lat: " + searchFilter.getLatitudeText() + ", lng: " + searchFilter.getLongitudeText() + "}");
+//            return indexPage(searchFilter);
+//            return "redirect:/";
+            return "잘못된 위치정보입니다!";
+        }
         log.info(searchFilter.toString());
         return restaurantRestController.getRestaurants(searchFilter, "0");
+    }
+
+    private boolean validateGeoPosition(SearchFilter filter){
+        try {
+            filter.setLatitude(Double.valueOf(filter.getLatitudeText()));
+            filter.setLongitude(Double.valueOf(filter.getLongitudeText()));
+        } catch (NumberFormatException | NullPointerException e) {
+            return false;
+        }
+        return true;
     }
 
 }

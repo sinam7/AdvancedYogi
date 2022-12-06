@@ -11,7 +11,6 @@ public class Options {
     private static final Map<String, String> categories = new LinkedHashMap<>();
     private static final Map<String, String> sortOrder = new LinkedHashMap<>();
 
-
     public Options() {
         initCategories();
         initSortOrder();

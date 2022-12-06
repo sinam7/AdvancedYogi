@@ -17,4 +17,9 @@ public class SearchFilter {
     private Double latitude = 0.0;
     private Double longitude = 0.0;
 
+    private String latitudeText = "0.0";
+    private String longitudeText = "0.0";
+
+    private Boolean geoFailed = false;
+
 }

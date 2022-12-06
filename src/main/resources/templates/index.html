@@ -74,10 +74,10 @@
     <div>
         <h4>내 위치 찾기</h4>
         <button onclick="findLocation()" type="button">내 위치 불러오기</button>
-        <span>위도 : <input type="number" th:field="*{latitude}" th:value="*{latitude}"></span>
+        <span>위도 : <input type="text" th:field="*{latitudeText}" th:value="*{latitudeText}"></span>
         <span>  </span>
-        <span>경도 : <input type="number" th:field="*{longitude}" th:value="*{longitude}"></span>
-
+        <span>경도 : <input type="text" th:field="*{longitudeText}" th:value="*{longitudeText}"></span>
+        <span th:if="*{geoFailed}" >올바르지 않은 위치정보 값이 있습니다!</span>
         <p id="myLocation"></p>
         <a id="map" target="_blank">내 위치 지도로 보기 (새 창으로 열림)</a>
 
@@ -90,8 +90,8 @@
 </body>
 
 <script>
-    let lat = document.getElementById("latitude");
-    let lng = document.getElementById("longitude");
+    let lat = document.getElementById("latitudeText");
+    let lng = document.getElementById("longitudeText");
     let loc = document.getElementById("myLocation")
     let map = document.getElementById("map");
 
