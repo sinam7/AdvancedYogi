@@ -32,9 +32,9 @@ public class SimplifiedRestaurant {
         review_count = restaurant.getReview_count();
         categories = restaurant.getCategories();
 
-        String[] split = estimated_delivery_time.split("~");
+        String[] split = estimated_delivery_time.split("~?[ㄱ-ㅎ|ㅏ-ㅣ|가-힣]?");
         fastest = Integer.valueOf(split[0]);
-        slowest = Integer.valueOf(split[1].substring(0, 2));
+        slowest = Integer.valueOf(split[1]);
     }
 
 
